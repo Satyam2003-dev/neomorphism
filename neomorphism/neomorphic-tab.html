@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Nunito+Sans);
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f4;
+            color: #a2a2a2;
+            font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
+        }
+
+        .darkmode .container {
+            background-color: #1A1B1F;
+            color: #8a8a8a;
+        }
+
+        .Tcontainer {
+            width: 540px;
+            max-width: 620px;
+            min-width: 420px;
+            margin: auto;
+        }
+
+        .tabs {
+            margin-bottom: 28px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .tabs a {
+            cursor: pointer;
+            padding: 12px 24px;
+            width: 120px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 18px;
+            transition: background 0.1s, color 0.1s;
+            background: linear-gradient(145deg, #ffffff, #dcdcdc);
+            box-shadow: 3px 3px 5px #bebebe,
+                -3px -3px 5px #ffffff;
+        }
+
+        .darkmode .tabs a {
+            background: linear-gradient(145deg, #1c1d21, #17181c);
+            box-shadow: 3px 3px 6px #101114,
+                -3px -3px 6px #24252a;
+        }
+
+        .tabs a:hover {
+            background: linear-gradient(145deg, #f4f4f4, #cecece);
+            color: #888;
+        }
+
+        .darkmode .tabs a:hover {
+            background: #141414;
+            color: #bbb;
+        }
+
+        .tabs a.active {
+            background-color: #f4f4f4;
+            color: #bdbdbd;
+            cursor: default;
+            padding: 14px 22px 10px 26px;
+            background: #f4f4f4;
+            box-shadow: inset 3px 3px 5px #cbcbcb,
+                inset -3px -3px 5px #ffffff;
+        }
+
+        .darkmode .tabs a.active {
+            background: #1A1B1F;
+            box-shadow: inset 3px 3px 6px #101114,
+                inset -3px -3px 6px #24252a;
+            color: #6a6a6a;
+        }
+
+        .Tcontent {
+            padding: 46px;
+            min-height: 288px;
+            display: none;
+            border-radius: 18px;
+            background: #f4f4f4;
+            box-shadow: 3px 3px 6px #bebebe,
+                -3px -3px 6px #ffffff;
+        }
+
+        .darkmode .Tcontent {
+            background: linear-gradient(145deg, #1c1d21, #17181c);
+            box-shadow: 3px 3px 6px #101114,
+                -3px -3px 6px #24252a;
+        }
+
+        .content .active {
+            display: block;
+        }
+
+        .Tcontent p {
+            margin-bottom: 12px;
+        }
+
+        .Tcontent p:last-child {
+            margin-bottom: 0;
+        }
+
+        .Tcontent .read-more-link a {
+            color: #626262;
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .darkmode .Tcontent .read-more-link a {
+            color: #d4d4d4;
+        }
+
+        .DarkModeSW {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+        }
+
+        .switch-label {
+            cursor: pointer;
+            font-size: 0.85em;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 22px;
+            margin-left: 4px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #1A1B1F;
+            transition: .2s;
+            box-shadow: 2px 2px 3px #ffffff,
+                -2px -2px 3px #bebebe;
+        }
+
+        .darkmode .slider {
+            box-shadow: 2px 2px 3px #34353a,
+                -2px -2px 3px #000104;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 2px;
+            background: #9294b8;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #f4f4f4;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(21px);
+        }
+
+        .slider.round {
+            border-radius: 11px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        @media (max-width: 650px) {
+            .Tcontainer {
+                width: 100%;
+            }
+
+            .tabs {
+                display: block;
+            }
+
+            .tabs a {
+                width: 70px;
+            }
+
+            .Tcontent {
+                padding: 15px;
+            }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Neumorphic Tabs | Webdevtrick.com</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div id="container" class="container">
+        <div id="tabs" class="Tcontainer">
+
+            <div class="tabs">
+                <a id="tab1" data-tab="1" class="tab">HTML</a>
+                <a id="tab2" data-tab="2" class="tab">CSS</a>
+                <a id="tab3" data-tab="3" class="tab">jQuery</a>
+                <a id="tab4" data-tab="4" class="tab">PHP</a>
+            </div>
+
+            <div class="content">
+                <div id="Tcontent1" data-tab="1" class="Tcontent">
+                    <p>Hypertext Markup Language is the standard markup language for documents designed to be displayed
+                        in a web browser.</p>
+                    <p>It can be assisted by technologies such as Cascading Style Sheets (CSS) and scripting languages
+                        such as JavaScript.</p>
+                    <p>HTML elements are the building blocks of HTML pages.</p>
+                    <p class="read-more-link"><a href="#">Learn more</a></p>
+                </div>
+                <div id="Tcontent2" data-tab="2" class="Tcontent">
+                    <p>Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a
+                        document written in a markup language like HTML.</p>
+                    <p>CSS is a cornerstone technology of the World Wide Web, alongside HTML and JavaScript.</p>
+                    <p>The CSS specifications are maintained by the World Wide Web Consortium (W3C).</p>
+                    <p class="read-more-link"><a href="#">Learn more</a></p>
+                </div>
+                <div id="Tcontent3" data-tab="3" class="Tcontent">
+                    <p>jQuery is a JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as
+                        well as event handling, CSS animation, and Ajax.</p>
+                    <p>It is free, open-source software using the permissive MIT License. As of May 2019, jQuery is used
+                        by 73% of the 10 million most popular websites.</p>
+                    <p>jQuery's syntax is designed to make it easier to navigate a document.</p>
+                    <p class="read-more-link"><a href="#">Learn more</a></p>
+                </div>
+                <div id="Tcontent4" data-tab="4" class="Tcontent">
+                    <p>PHP is a popular general-purpose scripting language that is especially suited to web development.
+                    </p>
+                    <p>It was originally created by Rasmus Lerdorf in 1994; the PHP reference implementation is now
+                        produced by The PHP Group.</p>
+                    <p>The standard PHP interpreter, powered by the Zend Engine, is free software released under the PHP
+                        License.</p>
+                    <p class="read-more-link"><a href="#">Learn more</a></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="DarkModeSW">
+            <label class="switch-label" for="DarkModeSW">Dark mode</label>
+            <label class="switch">
+                <input type="checkbox" id="DarkModeSW">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+    </div>
+
+
+    <script>
+        const tabs = document.querySelectorAll('.tab')
+        const Tcontents = document.querySelectorAll('.Tcontent')
+        const darkModeSwitch = document.querySelector('#DarkModeSW')
+
+        const activateTab = tabnum => {
+
+            tabs.forEach(tab => {
+                tab.classList.remove('active')
+            })
+
+            Tcontents.forEach(Tcontent => {
+                Tcontent.classList.remove('active')
+            })
+
+            document.querySelector('#tab' + tabnum).classList.add('active')
+            document.querySelector('#Tcontent' + tabnum).classList.add('active')
+            localStorage.setItem('jstabs-opentab', JSON.stringify(tabnum))
+
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                activateTab(tab.dataset.tab)
+            })
+        })
+
+        darkModeSwitch.addEventListener('change', () => {
+            document.querySelector('body').classList.toggle('darkmode')
+            localStorage.setItem('jstabs-darkmode', JSON.stringify(!darkmode))
+        })
+
+        let darkmode = JSON.parse(localStorage.getItem('jstabs-darkmode'))
+        const opentab = JSON.parse(localStorage.getItem('jstabs-opentab')) || '3'
+
+        if (darkmode === null) {
+            darkmode = window.matchMedia("(prefers-color-scheme: dark)").matches
+        }
+        if (darkmode) {
+            document.querySelector('body').classList.add('darkmode')
+            document.querySelector('#DarkModeSW').checked = 'checked'
+        }
+        activateTab(opentab)
+    </script>
+
+</body>
+
+</html>
